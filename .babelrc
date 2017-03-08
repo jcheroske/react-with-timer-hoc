@@ -1,10 +1,13 @@
 {
   "presets": [
     ["env", {
-      "targets": { "node": "current" },
-      "modules": false,
+      "targets": {
+        "browsers": "last 2 versions"
+      },
+      "modules": "umd",
       "useBuiltIns": true
     }],
     "stage-0"
-  ]
+  ],
+  "plugins": ["transform-decorators-legacy"]
 }
