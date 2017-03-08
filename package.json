@@ -1,7 +1,7 @@
 {
-  "name": "babel-webpack-package-boilerplate",
+  "name": "@jcheroske/babel-webpack-package-boilerplate",
   "version": "2.0.0",
-  "description": "boilerplate for building an npm package with next-gen javascript transpilation through babel and tree-shaking compilation through webpack",
+  "description": "Boilerplate for building an npm package with next-gen javascript transpilation through babel and tree-shaking compilation through webpack.",
   "bin": {
     "babel-webpack-package-boilerplate": "./bin/main.js"
   },
@@ -24,18 +24,18 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=PROD webpack --progress --colors",
-    "build:watch": "cross-env NODE_ENV=DEV webpack --progress --colors --watch --growl",
+    "build:watch": "cross-env NODE_ENV=DEV webpack --progress --colors --watch",
     "test": "cross-env NODE_ENV=TEST mocha-webpack",
-    "test:watch": "cross-env NODE_ENV=TEST mocha-webpack --watch --growl",
+    "test:watch": "cross-env NODE_ENV=TEST mocha-webpack --watch",
     "prestart": "npm run build",
     "prepublish": "npm run build",
     "start": "node ./bin/main",
-    "style": "standard",
-    "fmt": "standard --fix"
+    "style": "semistandard",
+    "fmt": "semistandard --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/resisttheurge/babel-webpack-package-boilerplate.git"
+    "url": "git+https://github.com/jcheroske/babel-webpack-package-boilerplate.git"
   },
   "keywords": [
     "babel",
@@ -69,10 +69,10 @@
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
     "source-map-support": "^0.4.11",
-    "standard": "^8.6.0",
+    "semistandard": "*",
     "webpack": "^2.2.1"
   },
-  "standard": {
+  "semistandard": {
     "parser": "babel-eslint",
     "globals": [
       "DEV",

@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const { resolve } = require('./resolve')
-const { rules } = require('./rules')
-const { plugins } = require('./plugins')
-const { entry, output } = require('./io')
-const { devtool } = require('./dev')
-const { target } = require('./target')
+const { resolve } = require('./resolve');
+const { rules } = require('./rules');
+const { plugins } = require('./plugins');
+const { entry, output } = require('./io');
+const { devtool } = require('./dev');
+const { target } = require('./target');
 
 module.exports = {
   entry,
@@ -15,4 +15,4 @@ module.exports = {
   devtool,
   target,
   module: { rules }
-}
+};

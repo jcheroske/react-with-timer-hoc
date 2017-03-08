@@ -1,3 +1,3 @@
-import { greeting } from 'greeting'
+import { greeting } from 'greeting';
 
-console.log(greeting())
+console.log(greeting());

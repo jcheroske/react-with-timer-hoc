@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 
-const extensions = ['.js']
+const extensions = ['.js'];
 
-const modules = ['lib', 'node_modules']
+const modules = ['lib', 'node_modules'];
 
 module.exports = {
   resolve: {
     extensions,
     modules
   }
-}
+};
