@@ -16,22 +16,24 @@
     "webpack.config.js"
   ],
   "directories": {
-    "bin": "./bin",
     "config": "./config",
     "dist": "./dist",
     "src": "./src",
     "lib": "./src/lib"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=PROD webpack --progress --colors",
+    "build": "cross-env NODE_ENV=DEV webpack --progress --colors",
+    "build:prod": "cross-env NODE_ENV=PROD webpack --progress --colors",
     "build:watch": "cross-env NODE_ENV=DEV webpack --progress --colors --watch",
+    "clean": "rimraf dist/*",
+    "modules": "rimraf node_modules/* && npm i",
     "test": "cross-env NODE_ENV=TEST mocha-webpack",
     "test:watch": "cross-env NODE_ENV=TEST mocha-webpack --watch",
-    "prestart": "npm run build",
-    "prepublish": "npm run build",
+    "prestart": "npm run build:prod",
+    "prepublish": "npm run build:prod",
     "start": "node ./bin/main",
-    "style": "semistandard",
-    "fmt": "semistandard --fix"
+    "lint": "standard",
+    "lint:fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -51,29 +53,36 @@
     "boilerplate"
   ],
   "author": "Peter Zastoupil <peterzastoupil@gmail.com>",
+  "contributors": [
+    "Jay Cheroske <jay@portal.org>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/resisttheurge/babel-webpack-package-boilerplate/issues"
   },
-  "homepage": "https://github.com/resisttheurge/babel-webpack-package-boilerplate#readme",
+  "homepage": "https://github.com/jcheroske/babel-webpack-package-boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
+    "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-polyfill": "^6.22.0",
     "babel-preset-env": "^1.1.8",
     "babel-preset-stage-0": "^6.22.0",
     "bind-infix-proxy": "^1.0.0",
+    "chai": "^3.5.0",
     "cross-env": "^3.1.4",
     "jsverify": "^0.7.4",
+    "lodash-webpack-plugin": "^0.11.2",
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
-    "semistandard": "*",
+    "rimraf": "^2.6.1",
+    "sinon": "^1.17.7",
     "source-map-support": "^0.4.11",
+    "standard": "^9.0.1",
     "webpack": "^2.2.1"
   },
-  "semistandard": {
+  "standard": {
     "parser": "babel-eslint",
     "globals": [
       "DEV",

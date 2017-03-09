@@ -1,1 +1,1 @@
-export { greeting, hello, world } from 'greeting';
+export { greeting, hello, world } from 'greeting'

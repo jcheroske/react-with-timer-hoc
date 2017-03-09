@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-const { DEV } = require('./env');
+const { DEV } = require('./env')
 
 const devtool =
-  DEV ? 'source-map' : 'nosource-source-map';
+  DEV ? 'source-map' : 'nosource-source-map'
 
 module.exports = {
   devtool
-};
+}

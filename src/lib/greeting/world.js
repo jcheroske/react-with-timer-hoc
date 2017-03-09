@@ -1,2 +1,2 @@
 export const world =
-  () => 'world';
+  () => 'world'

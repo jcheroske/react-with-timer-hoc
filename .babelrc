@@ -4,10 +4,10 @@
       "targets": {
         "browsers": "last 2 versions"
       },
-      "modules": "umd",
+      "modules": false,
       "useBuiltIns": true
     }],
     "stage-0"
   ],
-  "plugins": ["transform-decorators-legacy"]
+  "plugins": ["transform-decorators-legacy", "lodash"]
 }

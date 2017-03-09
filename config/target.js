@@ -1,5 +1,5 @@
-'use strict';
+'use strict'
 
-const target = 'node';
+const target = 'node'
 
-module.exports = { target };
+module.exports = { target }

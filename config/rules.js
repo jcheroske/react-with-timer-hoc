@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
 const babel = {
   test: /\.js$/,
   exclude: [/node_modules/],
   use: ['babel-loader']
-};
+}
 
-const rules = [babel];
+const rules = [babel]
 
-module.exports = { babel, rules };
+module.exports = { babel, rules }
