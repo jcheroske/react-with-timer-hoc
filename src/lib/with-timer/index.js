@@ -1,11 +1,11 @@
 import 'babel-polyfill'
 import invariant from 'invariant'
 import { isEmpty, isFunction, isNumber, isString } from 'lodash'
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 
 export const withTimer = ({
-  delay,
-  onTimeout,
+  delay: delayArg,
+  onTimeout: onTimeoutArg,
   options: {
     cancelPropName = 'cancelTimer',
     finishPropName = 'finishTimer',
@@ -13,8 +13,8 @@ export const withTimer = ({
     startPropName = 'startTimer'
   } = {}
 }) => {
-  invariant(isNumber(delay) && delay >= 0, `withTimer() delay argument must be >= 0. Current value: ${delay}`)
-  invariant(isFunction(onTimeout), `withTimer() onTimeout argument must be a function. Current value: ${onTimeout}`)
+  invariant(isNumber(delayArg) && delayArg >= 0, `withTimer() delay argument must be >= 0. Current value: ${delayArg}`)
+  invariant(isFunction(onTimeoutArg), `withTimer() onTimeout argument must be a function. Current value: ${onTimeoutArg}`)
   invariant(isString(cancelPropName) && !isEmpty(cancelPropName),
     `withTimer() cancelPropName argument must be a non-empty string. Current value: ${cancelPropName}`)
   invariant(isString(finishPropName) && !isEmpty(finishPropName),
@@ -28,34 +28,43 @@ export const withTimer = ({
     const factory = React.createFactory(BaseComponent)
 
     return class WithTimer extends Component {
-      timeoutId = null;
+      static propTypes = {
+        delay: PropTypes.number,
+        onTimeout: PropTypes.func
+      }
+
+      timeoutId = null
 
       start = delayOverride => {
         if (!this.timeoutId) {
-          delayOverride = delayOverride || delay
-          this.timeoutId = setTimeout(this.timeout, delayOverride)
+          const delay = delayOverride || this.props.delay || delayArg
+          invariant(isNumber(delay) && delay >= 0, `withTimer() delay must be >= 0. Current value: ${delayArg}`)
+          this.timeoutId = setTimeout(this.timeout, delay)
         }
-      };
+      }
 
       cancel = () => {
         clearTimeout(this.timeoutId)
         this.timeoutId = null
-      };
+      }
 
-      restart = delay => {
+      restart = delayOverride => {
         this.cancel()
-        this.start(delay)
-      };
+        this.start(delayOverride)
+      }
 
       finish = () => {
         this.cancel()
         this.timeout()
-      };
+      }
 
       timeout = () => {
         this.timeoutId = null
+
+        const onTimeout = this.props.onTimeout || onTimeoutArg
+        invariant(isFunction(onTimeout), `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
         onTimeout(this.props)
-      };
+      }
 
       componentWillUnmount () {
         this.cancel()
