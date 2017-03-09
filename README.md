@@ -53,9 +53,15 @@ $ npm run build
 $ npm run build:watch
 ```
 
+A production build can be generated with:
+
+```bash
+$ npm run build:prod
+```
+
 The `prestart`, and `prepublish` scripts defined in the
-`package.json` file reference the `build` script, so there's no need to run
-the build script manually in those situations.
+`package.json` file reference the `build:prod` script, so there's no need to run
+the production build script manually in those situations.
 
 Running
 -------
@@ -68,7 +74,7 @@ $ npm start
   hello, world!
 ```
 
-As said before, this will automatically run the build script first.
+As said before, this will automatically run the build:prod script first.
 
 Testing
 -------
@@ -107,7 +113,7 @@ $ babel-webpack-package-boilerplate
   hello, world!
 ```
 
-In both cases, again, this will automatically run the build script after installation.
+In both cases, again, this will automatically run the build:prod script after installation.
 
 [webpack]:https://webpack.github.io/
 [es2015+]:http://www.ecma-international.org/ecma-262/6.0/
