@@ -1,13 +1,9 @@
 {
-  "name": "@jcheroske/babel-webpack-package-boilerplate",
-  "version": "2.0.0",
-  "description": "Boilerplate for building an npm package with next-gen javascript transpilation through babel and tree-shaking compilation through webpack.",
-  "bin": {
-    "babel-webpack-package-boilerplate": "./bin/main.js"
-  },
+  "name": "react-with-timer",
+  "version": "0.1.0",
+  "description": "React HOC that simplifies the use of setTimeout-based timers.",
   "main": "./dist/lib.js",
   "files": [
-    "bin",
     "config",
     "dist",
     "src",
@@ -29,15 +25,13 @@
     "modules": "rimraf node_modules/* && npm i",
     "test": "cross-env NODE_ENV=TEST mocha-webpack",
     "test:watch": "cross-env NODE_ENV=TEST mocha-webpack --watch",
-    "prestart": "npm run build:prod",
     "prepublish": "npm run build:prod",
-    "start": "node ./bin/main",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jcheroske/babel-webpack-package-boilerplate.git"
+    "url": "git+https://github.com/jcheroske/react-with-timer.git"
   },
   "keywords": [
     "babel",
@@ -52,15 +46,12 @@
     "publishing",
     "boilerplate"
   ],
-  "author": "Peter Zastoupil <peterzastoupil@gmail.com>",
-  "contributors": [
-    "Jay Cheroske <jay@portal.org>"
-  ],
+  "author": "Jay Cheroske <jay@portal.org>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/resisttheurge/babel-webpack-package-boilerplate/issues"
+    "url": "https://github.com/resisttheurge/react-with-timer/issues"
   },
-  "homepage": "https://github.com/jcheroske/babel-webpack-package-boilerplate#readme",
+  "homepage": "https://github.com/jcheroske/react-with-timere#readme",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
@@ -72,11 +63,15 @@
     "babel-preset-stage-0": "^6.22.0",
     "bind-infix-proxy": "^1.0.0",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
     "cross-env": "^3.1.4",
+    "enzyme": "^2.7.1",
     "jsverify": "^0.7.4",
     "lodash-webpack-plugin": "^0.11.2",
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
     "rimraf": "^2.6.1",
     "sinon": "^1.17.7",
     "source-map-support": "^0.4.11",
@@ -92,5 +87,7 @@
     ]
   },
   "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^15.4.2"
   }
 }

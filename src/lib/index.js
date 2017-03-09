@@ -1,1 +1,1 @@
-export { greeting, hello, world } from 'greeting'
+export * from 'with-timer'
