@@ -20,7 +20,7 @@ Fun things in this project:
   - Tree-shaking transpilation through webpack 2 and [es2015+] modules. Due to the
     statically-analyzable module system provided by next-generation JavaScript, webpack can remove unused code and dependencies at transpiletime, resulting in smaller built artifacts.
   - Modules in `lib` directories can be loaded universally, like modules found
-    in `node_modules`. See `src/main.js` and `src/test/index.js` for examples.
+    in `node_modules`. See `src/main.js` and `src/test/with-timer.js` for examples.
     See `modules` in `config/resolve.js` to see how this was configured.
   - Modules in `src` that end with `*test.js` and modules that are direct
     children of `test` directories can be run as [mocha] test modules, which will

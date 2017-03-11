@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 import invariant from 'invariant'
 import { isEmpty, isFunction, isNumber, isString } from 'lodash'
 import React, {Component, PropTypes} from 'react'
@@ -13,8 +12,10 @@ export const withTimer = ({
     startPropName = 'startTimer'
   } = {}
 }) => {
-  invariant(isNumber(delayArg) && delayArg >= 0, `withTimer() delay argument must be >= 0. Current value: ${delayArg}`)
-  invariant(isFunction(onTimeoutArg), `withTimer() onTimeout argument must be a function. Current value: ${onTimeoutArg}`)
+  invariant(delayArg == null || (isNumber(delayArg) && delayArg) >= 0,
+    `withTimer() delay must be >= 0. Current value: ${delayArg}`)
+  invariant(onTimeoutArg == null || isFunction(onTimeoutArg),
+    `withTimer() onTimeout must be a function. Current value: ${onTimeoutArg}`)
   invariant(isString(cancelPropName) && !isEmpty(cancelPropName),
     `withTimer() cancelPropName argument must be a non-empty string. Current value: ${cancelPropName}`)
   invariant(isString(finishPropName) && !isEmpty(finishPropName),
@@ -38,7 +39,7 @@ export const withTimer = ({
       start = delayOverride => {
         if (!this.timeoutId) {
           const delay = delayOverride || this.props.delay || delayArg
-          invariant(isNumber(delay) && delay >= 0, `withTimer() delay must be >= 0. Current value: ${delayArg}`)
+          invariant(isNumber(delay) && delay >= 0, `withTimer() delay must be >= 0. Current value: ${delay}`)
           this.timeoutId = setTimeout(this.timeout, delay)
         }
       }

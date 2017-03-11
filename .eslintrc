@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "extends": [
+    "standard",
+    "plugin:react/recommended"
+  ],
+  "globals": {
+    "sinon": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "root": true,
+  "rules": {
+
+  }
+}

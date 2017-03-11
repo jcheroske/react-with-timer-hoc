@@ -1,93 +1,94 @@
 {
-  "name": "react-with-timer",
-  "version": "0.1.0",
-  "description": "React HOC that simplifies the use of setTimeout-based timers.",
-  "main": "./dist/lib.js",
-  "files": [
-    "config",
-    "dist",
-    "src",
-    ".babelrc",
-    "README.md",
-    "webpack.config.js"
-  ],
-  "directories": {
-    "config": "./config",
-    "dist": "./dist",
-    "src": "./src",
-    "lib": "./src/lib"
-  },
-  "scripts": {
-    "build": "cross-env NODE_ENV=DEV webpack --progress --colors",
-    "build:prod": "cross-env NODE_ENV=PROD webpack --progress --colors",
-    "build:watch": "cross-env NODE_ENV=DEV webpack --progress --colors --watch",
-    "clean": "rimraf dist/*",
-    "modules": "rimraf node_modules/* && npm i",
-    "test": "cross-env NODE_ENV=TEST mocha-webpack",
-    "test:watch": "cross-env NODE_ENV=TEST mocha-webpack --watch",
-    "prepublish": "npm run build:prod",
-    "lint": "standard",
-    "lint:fix": "standard --fix"
-  },
+  "name": "@jcheroske/react-with-timer",
+  "description": "A React HOC that simplifies setTimeout-based timers.",
+  "version": "0.1.1",
+  "author": "Jay Cheroske <jay@portal.org>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jcheroske/react-with-timer.git"
+    "url": "git://github.com/jcheroske/react-with-timer.git"
   },
-  "keywords": [
-    "babel",
-    "es2015",
-    "es2015+",
-    "es6",
-    "webpack",
-    "webpack 2",
-    "npm",
-    "yarn",
-    "build",
-    "publishing",
-    "boilerplate"
-  ],
-  "author": "Jay Cheroske <jay@portal.org>",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/resisttheurge/react-with-timer/issues"
   },
   "homepage": "https://github.com/jcheroske/react-with-timere#readme",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "higher-order",
+    "components",
+    "hoc",
+    "recompose",
+    "utilities",
+    "setTimeout"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "NODE_ENV=DEV webpack --progress --colors",
+    "build:prod": "NODE_ENV=PROD webpack --progress --colors",
+    "build:watch": "NODE_ENV=DEV webpack --progress --colors --watch",
+    "clean": "rimraf dist/*",
+    "modules": "rimraf node_modules/* && npm i",
+    "test": "ava --concurrency=5",
+    "test:watch": "npm run test -- --watch",
+    "prepublish": "npm run build:prod",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "invariant": "^2.2.2",
+    "lodash": "^4.17.4",
+    "react": "^15.4.2"
+  },
   "devDependencies": {
+    "ava": "^0.18.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
-    "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-react-jsx": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.1.8",
+    "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
-    "bind-infix-proxy": "^1.0.0",
-    "chai": "^3.5.0",
-    "chai-enzyme": "^0.6.1",
-    "cross-env": "^3.1.4",
+    "babel-register": "^6.23.0",
     "enzyme": "^2.7.1",
-    "jsverify": "^0.7.4",
-    "lodash-webpack-plugin": "^0.11.2",
-    "mocha": "^3.2.0",
-    "mocha-webpack": "^0.7.0",
+    "eslint": "^3.17.1",
+    "eslint-config-standard": "^7.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "invariant": "^2.2.2",
+    "jsdom": "^9.11.0",
+    "lodash": "^4.17.4",
+    "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "rimraf": "^2.6.1",
     "sinon": "^1.17.7",
-    "source-map-support": "^0.4.11",
-    "standard": "^9.0.1",
+    "uglifyjs-webpack-plugin": "^0.3.0",
     "webpack": "^2.2.1"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "globals": [
-      "DEV",
-      "PROD",
-      "TEST"
-    ]
+  "devEngines": {
+    "node": "5.x",
+    "npm": "3.x"
   },
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "react": "^15.4.2"
+  "ava": {
+    "files": [
+      "src/**/__tests__/*{.,-}test.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ],
+    "failFast": true,
+    "require": [
+      "babel-register",
+      "./ava-test-setup"
+    ],
+    "babel": "inherit"
   }
 }
