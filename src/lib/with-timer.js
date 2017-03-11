@@ -11,7 +11,7 @@ export const withTimer = ({
     restartPropName = 'restartTimer',
     startPropName = 'startTimer'
   } = {}
-}) => {
+} = {}) => {
   invariant(delayArg == null || (isNumber(delayArg) && delayArg) >= 0,
     `withTimer() delay must be >= 0. Current value: ${delayArg}`)
   invariant(onTimeoutArg == null || isFunction(onTimeoutArg),
@@ -39,7 +39,11 @@ export const withTimer = ({
       start = delayOverride => {
         if (!this.timeoutId) {
           const delay = delayOverride || this.props.delay || delayArg
+          const onTimeout = this.props.onTimeout || onTimeoutArg
+
           invariant(isNumber(delay) && delay >= 0, `withTimer() delay must be >= 0. Current value: ${delay}`)
+          invariant(isFunction(onTimeout), `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
+
           this.timeoutId = setTimeout(this.timeout, delay)
         }
       }
@@ -61,9 +65,7 @@ export const withTimer = ({
 
       timeout = () => {
         this.timeoutId = null
-
         const onTimeout = this.props.onTimeout || onTimeoutArg
-        invariant(isFunction(onTimeout), `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
         onTimeout(this.props)
       }
 

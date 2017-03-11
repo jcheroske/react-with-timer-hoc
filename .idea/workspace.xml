@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6c48fe8-6c4a-4969-80e9-d3e54c2fbf67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.eslintignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.eslintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ava-test-setup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/dev.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/env.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/io.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/paths.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/plugins.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/resolve.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/rules.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/target.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mocha-webpack.opts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/index.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/with-timer/index.js" afterPath="$PROJECT_DIR$/src/lib/with-timer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.babelrc" afterPath="$PROJECT_DIR$/.babelrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" afterPath="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/with-timer.js" afterPath="$PROJECT_DIR$/src/lib/with-timer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,6 +41,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="with-timer.test.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,18 +73,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="with-timer.test.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ava-test-setup.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ava-test-setup.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -109,8 +86,8 @@
       <file leaf-file-name="with-timer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/with-timer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+            <state relative-caret-position="339">
+              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -455,12 +432,12 @@
       <workItem from="1488951793891" duration="13491000" />
       <workItem from="1489092536452" duration="377000" />
       <workItem from="1489093095277" duration="4388000" />
-      <workItem from="1489098935972" duration="39470000" />
+      <workItem from="1489098935972" duration="42657000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57726000" />
+    <option name="totallyTimeSpent" value="60913000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="975" extended-state="0" />
@@ -828,8 +805,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/with-timer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        <state relative-caret-position="339">
+          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
@@ -838,8 +815,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+        <state relative-caret-position="534">
+          <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
