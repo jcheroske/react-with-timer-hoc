@@ -105,8 +105,6 @@ export const withTimer = (config = {}) => {
     }
 
     render () {
-      console.log(this.getCallbackProps())
-
       const newProps = {
         ...this.getCallbackProps(),
         ...this.props
