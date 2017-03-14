@@ -11,9 +11,9 @@ npm i -S react-with-timer-hoc
 
 ###`withTimer`
 
-```typescript
+```js
 withTimer(
-  config: {
+  config?: {
     delay?: number,
     onTimeout?: (props: Object) => void,
     options?: {
@@ -26,123 +26,108 @@ withTimer(
 ) : HigherOrderComponent
 
 ```
+Creates an HOC, optionally configured with a `config` object. This HOC
+will pass up to four props to its wrapped instance (See below for a 
+description of each prop). The timer will be canceled if the
+`componentWillUnmount` lifecycle callback is invoked.
 
-This project is meant to show how easy and useful it can be to use [webpack] as
-a tool-chain for npm packages.
+#### HOC configuration options
 
-Fun things in this project:
-  - Source code and tests for the package are written with [es2015+] and
-    [stage-0] features (specifically the features supported by the [env] and
-    [stage-0] presets for [babel]).
-    See any `*.js` files in `src` for examples. See `.babelrc` for
-    the babel configuration, and `config/rules.js` to see how babel was
-    integrated into webpack.
-  - Platform-specific polyfills and transpilation. Use of the [env] preset for
-    [babel] allows webpack to avoid unused polyfills and source code transforms
-    if the target platform supports them. See `.babelrc` to see how the preset
-    was configured to support this.
-  - Tree-shaking transpilation through webpack 2 and [es2015+] modules. Due to the
-    statically-analyzable module system provided by next-generation JavaScript, webpack can remove unused code and dependencies at transpiletime, resulting in smaller built artifacts.
-  - Modules in `lib` directories can be loaded universally, like modules found
-    in `node_modules`. See `src/main.js` and `src/test/with-timer.js` for examples.
-    See `modules` in `config/resolve.js` to see how this was configured.
-  - Modules in `src` that end with `*test.js` and modules that are direct
-    children of `test` directories can be run as [mocha] test modules, which will
-    automatically be processed using webpack.
+* delay: Optional. Number of milliseconds, after timer is started,
+  before timer will expire. If omitted, must be passed in as a prop,
+  or passed as an argument to `startTimer()`
+* onTimeout: Optional. Function to be called when timer expires.
+  Invoked with the current props object.
+* options: Optional. An object with one or more of the following keys:
+  * cancelPropName: Rename the `cancelTimer` prop. If omitted, prop
+    will not be passed.
+  * finishPropName: Rename the `finishTimer` prop. If omitted, prop
+    will not be passed.
+  * cancelPropName: Rename the `resetTimer` prop. If omitted, prop
+    will not be passed.
+  * cancelPropName: Rename the `startTimer` prop. If omitted, prop
+    will not be passed.
+  
+Example:
+```js
+import {WonderfulComponent} from 'incredible-library'
+...
+const enhancer = withTimer({
+  delay: 500,
+  onTimeout: ({aProp}) => console.log(`Timer expired. Prop value: ${aProp}`)
+})
 
-Getting Started
----------------
-
-Clone the repository and install dependencies with `npm`.
-```bash
-$ git clone https://github.com/resisttheurge/babel-webpack-package-boilerplate.git
-$ cd babel-webpack-package-boilerplate
-$ npm install
+const EnhancedComponent = enhancer(WonderfulComponent)
 ```
 
-Building
---------
-The `build` script defined in the `package.json` file uses webpack to transpile
-sources in the `src` directory. The successfully transpiled sources
-are placed in the `dist` folder. This folder is preserved by npm, but ignored
-by git.
+#### Props from parent
+* delay: Optional. Number of milliseconds, after timer is started,
+  before timer will expire. Overrides value passed into HOC function.
+* onTimeout: Optional. Function to be called when timer expires.
+  Invoked with the current props object. Overrides value passed into HOC
+  function.
+  
+Example:
+```js
+import {withTimer} from 'react-with-timer-hoc'
+import {FabulousComponent} from 'mind-blowing-library'
+...
+const EnhancedComponent = withTimer()(FabulousComponent)
+...
+render() {
+  return (
+    <EnhancedComponent delay={1000} onTimeout={someCallbackFunction} />
+  )
+}
 
-```bash
-$ npm run build
 ```
 
-`Watch`-style building is supported by the `build:watch` script.
+#### Props passed to wrapped instance
 
-```bash
-$ npm run build:watch
+* `startTimer(delay?)`: Starts the timer. Optionally accepts a delay.
+* `cancelTimer()`: Cancels the timer. The `onTimeout` callback is not
+  invoked.
+* `resetTimer(delay?)`: Resets the timer to the beginning of its delay.
+  Optionally accepts a new delay. The `onTimeout` callback is not invoked.
+* `finishTimer()`: Cancels the timer and invokes the `onTimeout` callback.
+
+###Complete example, using Mobx and Recompose:
+```js
+import {inject} from 'mobx'
+import {branch, compose, lifecycle, renderNothing} from 'recompose'
+import {withTimer} from 'react-with-timer-hoc'
+...
+const enhancer = compose(
+  inject(({uiStore}) = ({
+    isOpen: uiStore.isPopupOpen,
+    setOpen: uiStore.setPopupOpen
+  })),
+  withTimer({
+    delay: 5000,
+    onTimeout: ({setOpen}) => setOpen(false),
+    options: {
+      startPropName: 'startTimer',
+      finishPropName: 'onCloseButtonClick'
+    }
+  }),
+  branch(
+    ({isOpen}) => !isOpen,
+    renderNothing
+  ),
+  lifecycle({
+    componentWillMount() {
+      this.props.startTimer()
+    }
+  })
+)
+
+const ModalPopup = ({onCloseButtonClick}) => (
+  <div id="popupWindow">
+    <button label="Close Window" onClick={onCloseButtonClick} />
+  </div>
+)
+
+const EnhancedPopup = enhancer(ModalPopup)
+...
+
 ```
-
-A production build can be generated with:
-
-```bash
-$ npm run build:prod
-```
-
-The `prestart`, and `prepublish` scripts defined in the
-`package.json` file reference the `build:prod` script, so there's no need to run
-the production build script manually in those situations.
-
-Running
--------
-
-Run the project with `npm start`.
-
-```bash
-$ npm start
-
-  hello, world!
-```
-
-As said before, this will automatically run the build:prod script first.
-
-Testing
--------
-
-Test the project with `npm test`.
-
-```bash
-$ npm test
-```
-
-`Watch`-style testing is supported by the `test:watch` script.
-
-```bash
-$ npm run test:watch
-```
-
-Publishing
-----------
-
-Publish the project on the local machine (for testing) with `npm install`.
-
-```bash
-$ npm install . -g
-$ babel-webpack-package-boilerplate
-
-  hello, world!
-```
-
-Publish the package globally with `npm publish`.
-
-```bash
-$ npm publish
-$ npm install -g babel-webpack-package-boilerplate
-$ babel-webpack-package-boilerplate
-
-  hello, world!
-```
-
-In both cases, again, this will automatically run the build:prod script after installation.
-
-[webpack]:https://webpack.github.io/
-[es2015+]:http://www.ecma-international.org/ecma-262/6.0/
-[stage-0]:https://github.com/tc39/ecma262/blob/master/stage0.md
-[babel]:https://babeljs.io/
-[babel-preset-env]:https://babeljs.io/docs/plugins/preset-env/
-[babel-preset-stage-0]:https://babeljs.io/docs/plugins/preset-stage-0/
-[mocha]:https://mochajs.org/

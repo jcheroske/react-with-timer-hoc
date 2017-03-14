@@ -42,7 +42,7 @@ export const withTimer = (config = {}) => {
       onTimeout: React.PropTypes.func
     }
 
-    timeoutId = null
+    timeoutId = undefined
 
     constructor ({delay, onTimeout}) {
       super()
@@ -64,7 +64,7 @@ export const withTimer = (config = {}) => {
 
     cancel = () => {
       clearTimeout(this.timeoutId)
-      this.timeoutId = null
+      this.timeoutId = undefined
     }
 
     reset = (delayOverride) => {
@@ -78,7 +78,7 @@ export const withTimer = (config = {}) => {
     }
 
     timeout = () => {
-      this.timeoutId = null
+      this.timeoutId = undefined
       const onTimeout = this.props.onTimeout || onTimeoutArg
       onTimeout(this.props)
     }
