@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack')
 
-const [ DEV, PROD ] = [ 'DEV', 'PROD' ].map(val => process.env.NODE_ENV === val)
+const [ DEV, PROD ] = [ 'development', 'production' ].map(val => process.env.NODE_ENV === val)
 
 module.exports = {
   context: __dirname,
@@ -21,9 +21,16 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader'
+      },
+      {
         test: /\.js$/,
         exclude: [/node_modules/],
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   },
@@ -47,7 +54,7 @@ module.exports = {
     })] : [])
   ],
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx'],
     modules: ['lib', 'node_modules']
   },
   target: 'web'

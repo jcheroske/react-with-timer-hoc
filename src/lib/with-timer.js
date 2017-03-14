@@ -1,88 +1,117 @@
 import invariant from 'invariant'
-import { isEmpty, isFunction, isNumber, isString } from 'lodash'
-import React, {Component, PropTypes} from 'react'
+import { isEmpty, isFunction, isNumber, isString, isUndefined, toPairs } from 'lodash'
+import * as React from 'react'
 
-export const withTimer = ({
-  delay: delayArg,
-  onTimeout: onTimeoutArg,
-  options: {
-    cancelPropName = 'cancelTimer',
-    finishPropName = 'finishTimer',
-    restartPropName = 'restartTimer',
-    startPropName = 'startTimer'
-  } = {}
-} = {}) => {
-  invariant(delayArg == null || (isNumber(delayArg) && delayArg) >= 0,
-    `withTimer() delay must be >= 0. Current value: ${delayArg}`)
-  invariant(onTimeoutArg == null || isFunction(onTimeoutArg),
-    `withTimer() onTimeout must be a function. Current value: ${onTimeoutArg}`)
-  invariant(isString(cancelPropName) && !isEmpty(cancelPropName),
-    `withTimer() cancelPropName argument must be a non-empty string. Current value: ${cancelPropName}`)
-  invariant(isString(finishPropName) && !isEmpty(finishPropName),
-    `withTimer() finishPropName argument must be a non-empty string. Current value: ${finishPropName}`)
-  invariant(isString(restartPropName) && !isEmpty(restartPropName),
-    `withTimer() restartPropName argument must be a non-empty string. Current value: ${restartPropName}`)
-  invariant(isString(startPropName) && !isEmpty(startPropName),
-    `withTimer() startPropName argument must be a non-empty string. Current value: ${startPropName}`)
+const checkDelay = (delay, isRequired) =>
+  invariant((!isRequired && isUndefined(delay)) || (isNumber(delay) && delay >= 0),
+    `withTimer() delay must be >= 0. Current value: ${delay}`)
 
-  return BaseComponent => {
-    const factory = React.createFactory(BaseComponent)
+const checkOnTimeout = (onTimeout, isRequired) =>
+  invariant((!isRequired && isUndefined(onTimeout)) || isFunction(onTimeout),
+    `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
 
-    return class WithTimer extends Component {
-      static propTypes = {
-        delay: PropTypes.number,
-        onTimeout: PropTypes.func
-      }
+const checkPropName = (propName, displayName) => {
+  invariant(isEmpty(propName) || isString(propName),
+    `withTimer() ${displayName} argument must be of type string. Current value: ${propName}`)
+}
 
-      timeoutId = null
+export const withTimer = (config = {}) => {
+  const {
+    delay: delayArg,
+    onTimeout: onTimeoutArg,
+    options = {
+      cancelPropName: 'cancelTimer',
+      finishPropName: 'finishTimer',
+      resetPropName: 'resetTimer',
+      startPropName: 'startTimer'
+    }
+  } = config
 
-      start = delayOverride => {
-        if (!this.timeoutId) {
-          const delay = delayOverride || this.props.delay || delayArg
-          const onTimeout = this.props.onTimeout || onTimeoutArg
+  const {cancelPropName, finishPropName, resetPropName, startPropName} = options
 
-          invariant(isNumber(delay) && delay >= 0, `withTimer() delay must be >= 0. Current value: ${delay}`)
-          invariant(isFunction(onTimeout), `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
+  checkDelay(delayArg, false)
+  checkOnTimeout(onTimeoutArg, false)
+  checkPropName(cancelPropName, 'cancelPropName')
+  checkPropName(finishPropName, 'finishPropName')
+  checkPropName(resetPropName, 'resetPropName')
+  checkPropName(startPropName, 'startPropName')
 
-          this.timeoutId = setTimeout(this.timeout, delay)
-        }
-      }
+  return BaseComponent => class WithTimer extends React.Component {
+    static propTypes = {
+      delay: React.PropTypes.number,
+      onTimeout: React.PropTypes.func
+    }
 
-      cancel = () => {
-        clearTimeout(this.timeoutId)
-        this.timeoutId = null
-      }
+    timeoutId = null
 
-      restart = delayOverride => {
-        this.cancel()
-        this.start(delayOverride)
-      }
+    constructor ({delay, onTimeout}) {
+      super()
+      checkDelay(delay, false)
+      checkOnTimeout(onTimeout, false)
+    }
 
-      finish = () => {
-        this.cancel()
-        this.timeout()
-      }
-
-      timeout = () => {
-        this.timeoutId = null
+    start = (delayOverride) => {
+      if (!this.timeoutId) {
+        const delay = delayOverride || this.props.delay || delayArg
         const onTimeout = this.props.onTimeout || onTimeoutArg
-        onTimeout(this.props)
-      }
 
-      componentWillUnmount () {
-        this.cancel()
-      }
+        checkDelay(delay, true)
+        checkOnTimeout(onTimeout, true)
 
-      render () {
-        const newProps = {
-          [cancelPropName]: this.cancel,
-          [finishPropName]: this.finish,
-          [restartPropName]: this.restart,
-          [startPropName]: this.start,
-          ...this.props
-        }
-        return factory(newProps)
+        this.timeoutId = setTimeout(this.timeout, delay)
       }
+    }
+
+    cancel = () => {
+      clearTimeout(this.timeoutId)
+      this.timeoutId = null
+    }
+
+    reset = (delayOverride) => {
+      this.cancel()
+      this.start(delayOverride)
+    }
+
+    finish = () => {
+      this.cancel()
+      this.timeout()
+    }
+
+    timeout = () => {
+      this.timeoutId = null
+      const onTimeout = this.props.onTimeout || onTimeoutArg
+      onTimeout(this.props)
+    }
+
+    PROP_NAME_OPTION_TO_CALLBACK_MAP = {
+      cancelPropName: this.cancel,
+      finishPropName: this.finish,
+      resetPropName: this.reset,
+      startPropName: this.start
+    }
+
+    getCallbackProps = () =>
+      toPairs(this.PROP_NAME_OPTION_TO_CALLBACK_MAP).reduce(
+        (props, [propNameOption, callback]) => {
+          if (options[propNameOption]) {
+            props[ options[propNameOption] ] = callback
+          }
+          return props
+        }, {}
+      )
+
+    componentWillUnmount () {
+      this.cancel()
+    }
+
+    render () {
+      console.log(this.getCallbackProps())
+
+      const newProps = {
+        ...this.getCallbackProps(),
+        ...this.props
+      }
+      return <BaseComponent {...newProps} />
     }
   }
 }

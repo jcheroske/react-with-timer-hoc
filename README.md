@@ -1,7 +1,31 @@
-babel-webpack-package-boilerplate
-=================================
+# react-with-timer-hoc
 
-**Now updated for webpack 2!**
+A React higher-order component (HOC) that simplifies setTimeout-based timers.
+
+## Installation
+```bash
+npm i -S react-with-timer-hoc
+```
+
+## API
+
+###`withTimer`
+
+```typescript
+withTimer(
+  config: {
+    delay?: number,
+    onTimeout?: (props: Object) => void,
+    options?: {
+      cancelPropName?: string = 'cancelTimer',
+      finishPropName?: string = 'finishTimer',
+      resetPropName?: string = 'resetTimer',
+      startPropName?: string = 'startTimer'
+    }
+  }
+) : HigherOrderComponent
+
+```
 
 This project is meant to show how easy and useful it can be to use [webpack] as
 a tool-chain for npm packages.
