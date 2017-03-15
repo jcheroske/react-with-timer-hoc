@@ -1,6 +1,29 @@
 import invariant from 'invariant'
-import { isEmpty, isFunction, isNumber, isString, isUndefined, toPairs } from 'lodash'
+import {
+  defaults,
+  isEmpty,
+  isFunction,
+  isNumber,
+  isString,
+  isUndefined
+} from 'lodash'
 import * as React from 'react'
+
+const CALLBACK_METHODS = Object.freeze([
+  'cancel',
+  'finish',
+  'reset',
+  'start'
+])
+
+const DEFAULT_OPTIONS = Object.freeze({
+  cancelPropName: 'cancelTimer',
+  finishPropName: 'finishTimer',
+  passedProps: CALLBACK_METHODS,
+  resetPropName: 'resetTimer',
+  startOnMount: false,
+  startPropName: 'startTimer'
+})
 
 const checkDelay = (delay, isRequired) =>
   invariant((!isRequired && isUndefined(delay)) || (isNumber(delay) && delay >= 0),
@@ -19,22 +42,17 @@ export const withTimer = (config = {}) => {
   const {
     delay: delayArg,
     onTimeout: onTimeoutArg,
-    options = {
-      cancelPropName: 'cancelTimer',
-      finishPropName: 'finishTimer',
-      resetPropName: 'resetTimer',
-      startPropName: 'startTimer'
-    }
+    options: optionsArg = {}
   } = config
 
-  const {cancelPropName, finishPropName, resetPropName, startPropName} = options
+  const options = defaults(optionsArg, DEFAULT_OPTIONS)
 
   checkDelay(delayArg, false)
   checkOnTimeout(onTimeoutArg, false)
-  checkPropName(cancelPropName, 'cancelPropName')
-  checkPropName(finishPropName, 'finishPropName')
-  checkPropName(resetPropName, 'resetPropName')
-  checkPropName(startPropName, 'startPropName')
+  checkPropName(options.cancelPropName, 'cancelPropName')
+  checkPropName(options.finishPropName, 'finishPropName')
+  checkPropName(options.resetPropName, 'resetPropName')
+  checkPropName(options.startPropName, 'startPropName')
 
   return BaseComponent => class WithTimer extends React.Component {
     static propTypes = {
@@ -83,28 +101,30 @@ export const withTimer = (config = {}) => {
       onTimeout(this.props)
     }
 
-    PROP_NAME_OPTION_TO_CALLBACK_MAP = {
-      cancelPropName: this.cancel,
-      finishPropName: this.finish,
-      resetPropName: this.reset,
-      startPropName: this.start
-    }
-
     getCallbackProps = () =>
-      toPairs(this.PROP_NAME_OPTION_TO_CALLBACK_MAP).reduce(
-        (props, [propNameOption, callback]) => {
-          if (options[propNameOption]) {
-            props[ options[propNameOption] ] = callback
+      CALLBACK_METHODS.reduce(
+        (memo, cb) => {
+          const isPropPassed = options.passedProps.includes(cb)
+          if (isPropPassed) {
+            const propName = options[`${cb}PropName`]
+            memo[propName] = this[cb]
           }
-          return props
+          return memo
         }, {}
       )
+
+    componentWillMount () {
+      if (options.startOnMount) {
+        this.start()
+      }
+    }
 
     componentWillUnmount () {
       this.cancel()
     }
 
     render () {
+      console.log(this.getCallbackProps())
       const newProps = {
         ...this.getCallbackProps(),
         ...this.props

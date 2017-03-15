@@ -1,16 +1,16 @@
 {
-  "name": "@jcheroske/react-with-timer",
+  "name": "@jcheroske/react-with-timer-hoc",
   "description": "A React HOC that simplifies setTimeout-based timers.",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "author": "Jay Cheroske <jay@portal.org>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jcheroske/react-with-timer.git"
+    "url": "git://github.com/jcheroske/react-with-timer-hoc.git"
   },
   "bugs": {
-    "url": "https://github.com/resisttheurge/react-with-timer/issues"
+    "url": "https://github.com/jcheroske/react-with-timer-hoc/issues"
   },
-  "homepage": "https://github.com/jcheroske/react-with-timere#readme",
+  "homepage": "https://github.com/jcheroske/react-with-timer-hoc#readme",
   "license": "MIT",
   "keywords": [
     "react",

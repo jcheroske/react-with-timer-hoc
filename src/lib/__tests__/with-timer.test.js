@@ -42,7 +42,7 @@ test('withTimer undefined delay arg, prop, and override', t => {
   const Wrapped = withTimer({
     onTimeout: () => null,
     options: {
-      startPropName: 'startTimer'
+      passedProps: ['start']
     }
   })(t.context.ComponentSpy)
 
@@ -61,7 +61,7 @@ test('withTimer undefined onTimeout arg and prop', t => {
   const Wrapped = withTimer({
     delay: 0,
     options: {
-      startPropName: 'startTimer'
+      passedProps: ['start']
     }
   })(ComponentSpy)
 
@@ -81,7 +81,7 @@ test('withTimer startTimer works with args', t => {
     delay: 100,
     onTimeout: timeoutSpy,
     options: {
-      startPropName: 'startTimer'
+      passedProps: ['start']
     }
 
   })(ComponentSpy)
@@ -101,7 +101,7 @@ test('withTimer startTimer works with props', t => {
 
   const Wrapped = withTimer({
     options: {
-      startPropName: 'startTimer'
+      passedProps: ['start']
     }
   })(ComponentSpy)
 
@@ -121,8 +121,7 @@ test('withTimer cancelTimer works', t => {
     delay: 100,
     onTimeout: timeoutSpy,
     options: {
-      cancelPropName: 'cancelTimer',
-      startPropName: 'startTimer'
+      passedProps: ['cancel', 'start']
     }
 
   })(ComponentSpy)
@@ -144,8 +143,7 @@ test('withTimer resetTimer works', t => {
     delay: 100,
     onTimeout: timeoutSpy,
     options: {
-      resetPropName: 'resetTimer',
-      startPropName: 'startTimer'
+      passedProps: ['reset', 'start']
     }
 
   })(ComponentSpy)
@@ -170,8 +168,7 @@ test('withTimer finishTimer works', t => {
     delay: 100,
     onTimeout: timeoutSpy,
     options: {
-      finishPropName: 'finishTimer',
-      startPropName: 'startTimer'
+      passedProps: ['finish', 'start']
     }
 
   })(ComponentSpy)
@@ -196,7 +193,7 @@ test('withTimer unmounting component stops timer', t => {
     delay: 100,
     onTimeout: timeoutSpy,
     options: {
-      startPropName: 'startTimer'
+      passedProps: ['start']
     }
 
   })(ComponentSpy)
