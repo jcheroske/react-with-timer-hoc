@@ -47,12 +47,12 @@ description of each prop). The timer will be canceled if the
 
 #### HOC configuration options
 
-* delay: Optional. Number of milliseconds, after timer is started,
+* `delay`: Optional. Number of milliseconds, after timer is started,
   before timer will expire. If omitted, must be passed in as a prop,
   or passed as an argument to `startTimer()`
-* onTimeout: Optional. Function to be called when timer expires.
+* `onTimeout`: Optional. Function to be called when timer expires.
   Invoked with the current props object.
-* options: Optional. An object with zero or more of the following keys:
+* `options`: Optional. An object with zero or more of the following keys:
   * `cancelPropName`: Rename the `cancelTimer` prop.
   * `finishPropName`: Rename the `finishTimer` prop.
   * `passedProps`: Determines which props are passed to the wrapped
@@ -79,9 +79,9 @@ export default enhancer(FooComponent) // Foo will receive four props that
 
 The following props may be optionally passed in from the parent:
 
-* delay: Optional. Number of milliseconds, after timer is started,
+* `delay`: Optional. Number of milliseconds, after timer is started,
   before timer will expire. Overrides value passed into HOC function.
-* onTimeout: Optional. Function to be called when timer expires.
+* `onTimeout`: Optional. Function to be called when timer expires.
   Invoked with the current props object. Overrides value passed into HOC
   function.
   

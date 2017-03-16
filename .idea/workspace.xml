@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5002b79e-6d82-4111-9af8-92e1e2ec2d5d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,29 +33,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="210">
-                <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+              <first_editor relative-caret-position="-390">
+                <caret line="83" column="13" lean-forward="false" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
                 <folding>
-                  <marker date="1489627508000" expanded="true" signature="177:231" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="177:233" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="192:231" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="403:781" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="480:777" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="2051:2149" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="2190:2296" ph="//..." />
-                  <marker date="1489627508000" expanded="true" signature="2713:2795" ph="..." />
-                  <marker date="1489627508000" expanded="true" signature="2859:2949" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="3703:3827" ph="..." />
-                  <marker date="1489627508000" expanded="true" signature="3731:3827" ph="..." />
-                  <marker date="1489627508000" expanded="true" signature="3879:3951" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="4027:4216" ph="{...}" />
-                  <marker date="1489627508000" expanded="true" signature="4105:4212" ph="{&quot;finishPropName&quot;: 'onCloseButtonClick'...}" />
-                  <marker date="1489627508000" expanded="true" signature="4270:4366" ph="&lt;div/&gt;" />
-                  <marker date="1489627508000" expanded="true" signature="4270:4368" ph="&lt;div/&gt;" />
+                  <marker date="1489629772000" expanded="true" signature="177:231" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="177:233" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="192:231" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="404:782" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="481:778" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="2058:2156" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="2197:2303" ph="//..." />
+                  <marker date="1489629772000" expanded="true" signature="2724:2806" ph="..." />
+                  <marker date="1489629772000" expanded="true" signature="2870:2960" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="3714:3838" ph="..." />
+                  <marker date="1489629772000" expanded="true" signature="3742:3838" ph="..." />
+                  <marker date="1489629772000" expanded="true" signature="3890:3962" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="4038:4227" ph="{...}" />
+                  <marker date="1489629772000" expanded="true" signature="4116:4223" ph="{&quot;finishPropName&quot;: 'onCloseButtonClick'...}" />
+                  <marker date="1489629772000" expanded="true" signature="4281:4377" ph="&lt;div/&gt;" />
+                  <marker date="1489629772000" expanded="true" signature="4281:4379" ph="&lt;div/&gt;" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -62,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -118,8 +119,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" />
         <option value="$PROJECT_DIR$/src/lib/with-timer.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -196,16 +197,16 @@
       <option name="presentableId" value="Default" />
       <updated>1489508617592</updated>
       <workItem from="1489508618871" duration="2277000" />
-      <workItem from="1489511636360" duration="13208000" />
+      <workItem from="1489511636360" duration="13369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15485000" />
+    <option name="totallyTimeSpent" value="15646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="975" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -214,7 +215,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -265,39 +266,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="210">
-            <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
-            <folding>
-              <marker date="1489627508000" expanded="true" signature="177:231" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="177:233" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="192:231" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="403:781" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="480:777" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="2051:2149" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="2190:2296" ph="//..." />
-              <marker date="1489627508000" expanded="true" signature="2713:2795" ph="..." />
-              <marker date="1489627508000" expanded="true" signature="2859:2949" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="3703:3827" ph="..." />
-              <marker date="1489627508000" expanded="true" signature="3731:3827" ph="..." />
-              <marker date="1489627508000" expanded="true" signature="3879:3951" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="4027:4216" ph="{...}" />
-              <marker date="1489627508000" expanded="true" signature="4105:4212" ph="{&quot;finishPropName&quot;: 'onCloseButtonClick'...}" />
-              <marker date="1489627508000" expanded="true" signature="4270:4366" ph="&lt;div/&gt;" />
-              <marker date="1489627508000" expanded="true" signature="4270:4368" ph="&lt;div/&gt;" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-390">
+            <caret line="83" column="13" lean-forward="false" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+            <folding>
+              <marker date="1489629772000" expanded="true" signature="177:231" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="177:233" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="192:231" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="404:782" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="481:778" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="2058:2156" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="2197:2303" ph="//..." />
+              <marker date="1489629772000" expanded="true" signature="2724:2806" ph="..." />
+              <marker date="1489629772000" expanded="true" signature="2870:2960" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="3714:3838" ph="..." />
+              <marker date="1489629772000" expanded="true" signature="3742:3838" ph="..." />
+              <marker date="1489629772000" expanded="true" signature="3890:3962" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="4038:4227" ph="{...}" />
+              <marker date="1489629772000" expanded="true" signature="4116:4223" ph="{&quot;finishPropName&quot;: 'onCloseButtonClick'...}" />
+              <marker date="1489629772000" expanded="true" signature="4281:4377" ph="&lt;div/&gt;" />
+              <marker date="1489629772000" expanded="true" signature="4281:4379" ph="&lt;div/&gt;" />
+            </folding>
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
