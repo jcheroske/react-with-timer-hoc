@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5002b79e-6d82-4111-9af8-92e1e2ec2d5d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" afterPath="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/with-timer.js" afterPath="$PROJECT_DIR$/src/lib/with-timer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,11 +21,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="with-timer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="with-timer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/with-timer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1080">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="-1398">
+              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -33,27 +33,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="421">
-                <caret line="132" column="3" lean-forward="true" selection-start-line="132" selection-start-column="3" selection-end-line="132" selection-end-column="3" />
+              <first_editor relative-caret-position="60">
+                <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
                 <folding>
-                  <marker date="1489525824000" expanded="true" signature="214:485" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="291:481" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="1631:1725" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="2123:2217" ph="..." />
-                  <marker date="1489525824000" expanded="true" signature="2292:2382" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="2862:2997" ph="..." />
-                  <marker date="1489525824000" expanded="true" signature="2890:2997" ph="..." />
-                  <marker date="1489525824000" expanded="true" signature="3052:3124" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="3140:3307" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="3218:3303" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="3382:3450" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="3409:3446" ph="{...}" />
-                  <marker date="1489525824000" expanded="true" signature="3504:3600" ph="&lt;div/&gt;" />
-                  <marker date="1489525824000" expanded="true" signature="3504:3602" ph="&lt;div/&gt;" />
+                  <marker date="1489627369000" expanded="true" signature="242:620" ph="{...}" />
+                  <marker date="1489627369000" expanded="true" signature="319:616" ph="{...}" />
+                  <marker date="1489627369000" expanded="true" signature="1890:1988" ph="{...}" />
+                  <marker date="1489627369000" expanded="true" signature="2029:2135" ph="//..." />
+                  <marker date="1489627369000" expanded="true" signature="2552:2634" ph="..." />
+                  <marker date="1489627369000" expanded="true" signature="2698:2788" ph="{...}" />
+                  <marker date="1489627369000" expanded="true" signature="3542:3666" ph="..." />
+                  <marker date="1489627369000" expanded="true" signature="3570:3666" ph="..." />
+                  <marker date="1489627369000" expanded="true" signature="3718:3790" ph="{...}" />
+                  <marker date="1489627369000" expanded="true" signature="3866:4055" ph="{...}" />
+                  <marker date="1489627369000" expanded="true" signature="3944:4051" ph="{&quot;finishPropName&quot;: 'onCloseButtonClick'...}" />
+                  <marker date="1489627369000" expanded="true" signature="4109:4205" ph="&lt;div/&gt;" />
+                  <marker date="1489627369000" expanded="true" signature="4109:4207" ph="&lt;div/&gt;" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -64,8 +63,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-930">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="255">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,8 +73,8 @@
       <file leaf-file-name="with-timer.test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3240">
-              <caret line="216" column="24" lean-forward="false" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="24" />
+            <state relative-caret-position="342">
+              <caret line="220" column="12" lean-forward="false" selection-start-line="220" selection-start-column="11" selection-end-line="220" selection-end-column="12" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -90,10 +89,13 @@
       <find>console</find>
       <find>null</find>
       <find>=</find>
+      <find>'</find>
+      <find>about</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
       <replace>:</replace>
+      <replace>`</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -102,10 +104,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js" />
+        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/lib/with-timer.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -182,12 +184,12 @@
       <option name="presentableId" value="Default" />
       <updated>1489508617592</updated>
       <workItem from="1489508618871" duration="2277000" />
-      <workItem from="1489511636360" duration="8799000" />
+      <workItem from="1489511636360" duration="12601000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11076000" />
+    <option name="totallyTimeSpent" value="14878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="975" extended-state="0" />
@@ -223,57 +225,56 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="421">
-            <caret line="132" column="3" lean-forward="true" selection-start-line="132" selection-start-column="3" selection-end-line="132" selection-end-column="3" />
-            <folding>
-              <marker date="1489525824000" expanded="true" signature="214:485" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="291:481" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="1631:1725" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="2123:2217" ph="..." />
-              <marker date="1489525824000" expanded="true" signature="2292:2382" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="2862:2997" ph="..." />
-              <marker date="1489525824000" expanded="true" signature="2890:2997" ph="..." />
-              <marker date="1489525824000" expanded="true" signature="3052:3124" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="3140:3307" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="3218:3303" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="3382:3450" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="3409:3446" ph="{...}" />
-              <marker date="1489525824000" expanded="true" signature="3504:3600" ph="&lt;div/&gt;" />
-              <marker date="1489525824000" expanded="true" signature="3504:3602" ph="&lt;div/&gt;" />
-            </folding>
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/src/lib/with-timer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-930">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="-1398">
+          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/__tests__/with-timer.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3240">
-          <caret line="216" column="24" lean-forward="false" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="24" />
+        <state relative-caret-position="342">
+          <caret line="220" column="12" lean-forward="false" selection-start-line="220" selection-start-column="11" selection-end-line="220" selection-end-column="12" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/with-timer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1080">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+            <folding>
+              <marker date="1489627369000" expanded="true" signature="242:620" ph="{...}" />
+              <marker date="1489627369000" expanded="true" signature="319:616" ph="{...}" />
+              <marker date="1489627369000" expanded="true" signature="1890:1988" ph="{...}" />
+              <marker date="1489627369000" expanded="true" signature="2029:2135" ph="//..." />
+              <marker date="1489627369000" expanded="true" signature="2552:2634" ph="..." />
+              <marker date="1489627369000" expanded="true" signature="2698:2788" ph="{...}" />
+              <marker date="1489627369000" expanded="true" signature="3542:3666" ph="..." />
+              <marker date="1489627369000" expanded="true" signature="3570:3666" ph="..." />
+              <marker date="1489627369000" expanded="true" signature="3718:3790" ph="{...}" />
+              <marker date="1489627369000" expanded="true" signature="3866:4055" ph="{...}" />
+              <marker date="1489627369000" expanded="true" signature="3944:4051" ph="{&quot;finishPropName&quot;: 'onCloseButtonClick'...}" />
+              <marker date="1489627369000" expanded="true" signature="4109:4205" ph="&lt;div/&gt;" />
+              <marker date="1489627369000" expanded="true" signature="4109:4207" ph="&lt;div/&gt;" />
+            </folding>
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

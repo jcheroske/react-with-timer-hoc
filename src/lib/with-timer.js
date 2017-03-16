@@ -72,12 +72,14 @@ export const withTimer = (config = {}) => {
       onTimeout: React.PropTypes.func
     }
 
+    callbackProps = undefined
     timeoutId = undefined
 
     constructor ({delay, onTimeout}) {
       super()
       checkDelay(delay, false)
       checkOnTimeout(onTimeout, false)
+      this.callbackProps = this.getCallbackProps()
     }
 
     start = (delayOverride) => {
@@ -136,9 +138,8 @@ export const withTimer = (config = {}) => {
     }
 
     render () {
-      console.log(this.getCallbackProps())
       const newProps = {
-        ...this.getCallbackProps(),
+        ...this.callbackProps,
         ...this.props
       }
       return <BaseComponent {...newProps} />
