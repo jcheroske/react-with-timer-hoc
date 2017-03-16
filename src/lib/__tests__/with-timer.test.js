@@ -83,7 +83,6 @@ test('withTimer startTimer works with args', t => {
     options: {
       passedProps: ['start']
     }
-
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -123,7 +122,6 @@ test('withTimer cancelTimer works', t => {
     options: {
       passedProps: ['cancel', 'start']
     }
-
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -145,7 +143,6 @@ test('withTimer resetTimer works', t => {
     options: {
       passedProps: ['reset', 'start']
     }
-
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -170,7 +167,6 @@ test('withTimer finishTimer works', t => {
     options: {
       passedProps: ['finish', 'start']
     }
-
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -195,7 +191,6 @@ test('withTimer unmounting component stops timer', t => {
     options: {
       passedProps: ['start']
     }
-
   })(ComponentSpy)
 
   const wrapper = mount(<Wrapped />)
@@ -209,4 +204,24 @@ test('withTimer unmounting component stops timer', t => {
   wrapper.unmount()
   clock.tick(100)
   t.true(timeoutSpy.notCalled, 'onTimeout called')
+})
+
+test('withTimer starts on mount', t => {
+  const {clock, ComponentSpy, timeoutSpy} = t.context
+
+  const Wrapped = withTimer({
+    delay: 100,
+    onTimeout: timeoutSpy,
+    options: {
+      passedProps: [],
+      startOnMount: true
+    }
+  })(ComponentSpy)
+
+  mount(<Wrapped />)
+
+  clock.tick(50)
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  clock.tick(100)
+  t.true(timeoutSpy.calledOnce, 'onTimeout not called')
 })

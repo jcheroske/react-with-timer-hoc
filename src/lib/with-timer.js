@@ -1,6 +1,9 @@
 import invariant from 'invariant'
 import {
   defaults,
+  difference,
+  isArray,
+  isBoolean,
   isEmpty,
   isFunction,
   isNumber,
@@ -33,10 +36,17 @@ const checkOnTimeout = (onTimeout, isRequired) =>
   invariant((!isRequired && isUndefined(onTimeout)) || isFunction(onTimeout),
     `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
 
-const checkPropName = (propName, displayName) => {
+const checkPropName = (propName, displayName) =>
   invariant(isEmpty(propName) || isString(propName),
-    `withTimer() ${displayName} argument must be of type string. Current value: ${propName}`)
-}
+    `withTimer() ${displayName} option must be of type string. Current value: ${propName}`)
+
+const checkPassedProps = passedProps =>
+  invariant(isArray(passedProps) && isEmpty(difference(passedProps, CALLBACK_METHODS)),
+    `withTimer() passedProps option contains an invalid value. Valid values: ${CALLBACK_METHODS}. Current value: ${passedProps}`)
+
+const checkBooleanOption = (optionValue, optionName) =>
+  invariant(isBoolean(optionValue),
+    `withTimer() ${optionName} option is not a boolean. Current value: ${optionValue}`)
 
 export const withTimer = (config = {}) => {
   const {
@@ -53,6 +63,8 @@ export const withTimer = (config = {}) => {
   checkPropName(options.finishPropName, 'finishPropName')
   checkPropName(options.resetPropName, 'resetPropName')
   checkPropName(options.startPropName, 'startPropName')
+  checkPassedProps(options.passedProps)
+  checkBooleanOption(options.startOnMount, 'startOnMount')
 
   return BaseComponent => class WithTimer extends React.Component {
     static propTypes = {
