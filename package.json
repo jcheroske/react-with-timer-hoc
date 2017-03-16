@@ -1,7 +1,7 @@
 {
-  "name": "@jcheroske/react-with-timer-hoc",
+  "name": "react-with-timer-hoc",
   "description": "A React HOC that simplifies setTimeout-based timers.",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "author": "Jay Cheroske <jay@portal.org>",
   "repository": {
     "type": "git",
