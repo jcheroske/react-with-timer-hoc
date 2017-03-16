@@ -16,7 +16,8 @@ module.exports = {
       commonjs: 'lodash',
       amd: 'lodash'
     },
-    'react': 'react'
+    'react': 'react',
+    'warning': 'warning'
   },
   module: {
     rules: [
