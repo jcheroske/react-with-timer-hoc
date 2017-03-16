@@ -19,9 +19,7 @@ This is my first npm module. Comments very welcome!
 npm i -S react-with-timer-hoc
 ```
 
-## API
-
-### `withTimer`
+## `withTimer` API
 
 ```js
 withTimer(
@@ -33,20 +31,20 @@ withTimer(
     }
   }
 ) : HigherOrderComponent
-
 ```
 Creates an HOC, optionally configured with a `config` object. This HOC
 will pass props to its wrapped instance (See below for a 
 description of each prop). The timer will be canceled if the
 `componentWillUnmount` lifecycle callback is invoked.
 
-#### HOC configuration options
+### HOC configuration options
 
 * `delay`: Optional. Number of milliseconds, after timer is started,
   before timer will expire. If omitted, must be passed in as a prop,
   or passed as an argument to `startTimer()`
 * `onTimeout`: Optional. Function to be called when timer expires.
-  Invoked with the current props object.
+  Invoked with the current props object. If omitted, must be passed 
+  in as a prop.
 * `options`: Optional. An object with zero or more of the following keys:
   * `startOnMount`: If true, the timer will be started when
     `componentWillMount()` is called.
@@ -63,7 +61,7 @@ export default enhancer(FooComponent) // FooComponent will receive props
                                       // that control the timer. See below.
 ```
 
-#### Props from parent
+### Props from parent
 
 The following props may be optionally passed in from the parent:
 
@@ -89,11 +87,10 @@ class BarComponent {
 }
 ```
 
-#### Props passed to wrapped instance
+### Props passed to wrapped instance
 
 The following props are functions passed to the wrapped instance that
-control the timer. All of them may be renamed or omitted by using the 
-options object.
+control the timer.
 
 * `startTimer(delay?)`: Starts the timer. Optionally accepts a delay.
 * `stopTimer()`: Cancels the timer. The `onTimeout` callback is not
@@ -107,6 +104,8 @@ options object.
 
 ### Complete example, using Mobx and Recompose:
 
+We're trying to make a modal dialog that stays open for five seconds, but
+also has a close button.
 
 Assume there is an observable Mobx store called `uiStore` that has 
 properties `isPopupOpen` and `setPopupOpen`.
