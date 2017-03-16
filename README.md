@@ -21,7 +21,7 @@ npm i -S react-with-timer-hoc
 
 ## API
 
-###`withTimer`
+### `withTimer`
 
 ```js
 withTimer(
