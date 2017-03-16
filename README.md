@@ -113,7 +113,7 @@ options object.
   Optionally accepts a new delay. The `onTimeout` callback is not invoked.
 * `finishTimer()`: Cancels the timer and invokes the `onTimeout` callback.
 
-###Complete example, using Mobx and Recompose:
+### Complete example, using Mobx and Recompose:
 
 
 Assume there is an observable Mobx store called `uiStore` that has 
