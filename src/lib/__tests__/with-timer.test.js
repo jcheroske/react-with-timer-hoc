@@ -41,9 +41,6 @@ test('withTimer argument checks', t => {
 test('withTimer undefined delay arg, prop, and override', t => {
   const Wrapped = withTimer({
     onTimeout: () => null,
-    options: {
-      passedProps: ['start']
-    }
   })(t.context.ComponentSpy)
 
   mount(<Wrapped/>)
@@ -60,9 +57,6 @@ test('withTimer undefined onTimeout arg and prop', t => {
 
   const Wrapped = withTimer({
     delay: 0,
-    options: {
-      passedProps: ['start']
-    }
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -80,9 +74,6 @@ test('withTimer startTimer works with args', t => {
   const Wrapped = withTimer({
     delay: 100,
     onTimeout: timeoutSpy,
-    options: {
-      passedProps: ['start']
-    }
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -91,7 +82,9 @@ test('withTimer startTimer works with args', t => {
   t.true(timeoutSpy.notCalled, 'onTimeout called early')
   startTimer()
   t.true(timeoutSpy.notCalled, 'onTimeout called early')
-  clock.tick(100)
+  clock.tick(99)
+  t.true(timeoutSpy.notCalled, 'onTimeout called early')
+  clock.tick(1)
   t.true(timeoutSpy.calledOnce, 'onTimeout not called')
 })
 
@@ -99,9 +92,6 @@ test('withTimer startTimer works with props', t => {
   const {clock, ComponentSpy, timeoutSpy} = t.context
 
   const Wrapped = withTimer({
-    options: {
-      passedProps: ['start']
-    }
   })(ComponentSpy)
 
   mount(<Wrapped delay={100} onTimeout={timeoutSpy} />)
@@ -113,25 +103,22 @@ test('withTimer startTimer works with props', t => {
   t.true(timeoutSpy.calledOnce, 'onTimeout not called')
 })
 
-test('withTimer cancelTimer works', t => {
+test('withTimer stopTimer works', t => {
   const {clock, ComponentSpy, timeoutSpy} = t.context
 
   const Wrapped = withTimer({
     delay: 100,
     onTimeout: timeoutSpy,
-    options: {
-      passedProps: ['cancel', 'start']
-    }
   })(ComponentSpy)
 
   mount(<Wrapped />)
 
-  const {startTimer, cancelTimer} = ComponentSpy.lastCall.args[0]
+  const {startTimer, stopTimer} = ComponentSpy.lastCall.args[0]
   startTimer()
   clock.tick(50)
-  cancelTimer()
+  stopTimer()
   clock.tick(100)
-  t.true(timeoutSpy.notCalled, 'onTimeout called when canceled')
+  t.true(timeoutSpy.notCalled, 'onTimeout called when stopped')
 })
 
 test('withTimer resetTimer works', t => {
@@ -140,9 +127,6 @@ test('withTimer resetTimer works', t => {
   const Wrapped = withTimer({
     delay: 100,
     onTimeout: timeoutSpy,
-    options: {
-      passedProps: ['reset', 'start']
-    }
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -151,10 +135,10 @@ test('withTimer resetTimer works', t => {
 
   startTimer()
   clock.tick(50)
-  resetTimer()
-  clock.tick(75)
+  resetTimer(200)
+  clock.tick(175)
   t.true(timeoutSpy.notCalled, 'onTimeout called before it should be')
-  clock.tick(50)
+  clock.tick(25)
   t.true(timeoutSpy.calledOnce, 'onTimeout not called')
 })
 
@@ -164,9 +148,6 @@ test('withTimer finishTimer works', t => {
   const Wrapped = withTimer({
     delay: 100,
     onTimeout: timeoutSpy,
-    options: {
-      passedProps: ['finish', 'start']
-    }
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -188,9 +169,6 @@ test('withTimer unmounting component stops timer', t => {
   const Wrapped = withTimer({
     delay: 100,
     onTimeout: timeoutSpy,
-    options: {
-      passedProps: ['start']
-    }
   })(ComponentSpy)
 
   const wrapper = mount(<Wrapped />)
@@ -213,7 +191,6 @@ test('withTimer starts on mount', t => {
     delay: 100,
     onTimeout: timeoutSpy,
     options: {
-      passedProps: [],
       startOnMount: true
     }
   })(ComponentSpy)
@@ -223,5 +200,33 @@ test('withTimer starts on mount', t => {
   clock.tick(50)
   t.true(timeoutSpy.notCalled, 'onTimeout called')
   clock.tick(100)
+  t.true(timeoutSpy.calledOnce, 'onTimeout not called')
+})
+
+test('withTimer pauses, resumes, and completes on time', t => {
+  const {clock, ComponentSpy, timeoutSpy} = t.context
+
+  const Wrapped = withTimer({
+    delay: 100,
+    onTimeout: timeoutSpy
+  })(ComponentSpy)
+
+  mount(<Wrapped />)
+
+  const {startTimer, pauseTimer, resumeTimer} = ComponentSpy.lastCall.args[0]
+
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  startTimer()
+  clock.tick(25)
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  pauseTimer()
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  clock.tick(100)
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  resumeTimer()
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  clock.tick(74)
+  t.true(timeoutSpy.notCalled, 'onTimeout called')
+  clock.tick(1)
   t.true(timeoutSpy.calledOnce, 'onTimeout not called')
 })

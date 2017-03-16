@@ -29,19 +29,14 @@ withTimer(
     delay?: number,
     onTimeout?: (props: Object) => void,
     options?: {
-      cancelPropName?: string = 'cancelTimer',
-      finishPropName?: string = 'finishTimer',
-      passedProps?: array = [ 'cancel', 'finish', 'reset', 'start'],
-      resetPropName?: string = 'resetTimer',
-      startOnMount?: boolean = false,
-      startPropName?: string = 'startTimer'
+      startOnMount?: boolean = false
     }
   }
 ) : HigherOrderComponent
 
 ```
 Creates an HOC, optionally configured with a `config` object. This HOC
-will pass up to four props to its wrapped instance (See below for a 
+will pass props to its wrapped instance (See below for a 
 description of each prop). The timer will be canceled if the
 `componentWillUnmount` lifecycle callback is invoked.
 
@@ -53,15 +48,8 @@ description of each prop). The timer will be canceled if the
 * `onTimeout`: Optional. Function to be called when timer expires.
   Invoked with the current props object.
 * `options`: Optional. An object with zero or more of the following keys:
-  * `cancelPropName`: Rename the `cancelTimer` prop.
-  * `finishPropName`: Rename the `finishTimer` prop.
-  * `passedProps`: Determines which props are passed to the wrapped
-     component. An array that contains zero or more of the following
-     strings: `cancel`, `finish`, `reset`, `start`.
-  * `resetPropName`: Rename the `resetTimer` prop.
   * `startOnMount`: If true, the timer will be started when
     `componentWillMount()` is called.
-  * `startPropName`: Rename the `startTimer` prop.
   
 Example:
 ```jsx harmony
@@ -71,8 +59,8 @@ const enhancer = withTimer({
   onTimeout: ({barProp}) => console.log(`Timer expired. Prop value: ${barProp}`)
 })
 
-export default enhancer(FooComponent) // Foo will receive four props that
-                                      // control the timer. See below.
+export default enhancer(FooComponent) // FooComponent will receive props
+                                      // that control the timer. See below.
 ```
 
 #### Props from parent
@@ -92,12 +80,13 @@ import {FooComponent} from 'foo-component'
 
 const EnhancedComponent = withTimer()(FooComponent)
 
-render() {
-  return (
-    <EnhancedComponent delay={1000} onTimeout={someCallbackFunction} />
-  )
+class BarComponent {
+  render() {
+    return (
+      <EnhancedComponent delay={1000} onTimeout={someCallbackFunction} />
+    )
+  }
 }
-
 ```
 
 #### Props passed to wrapped instance
@@ -107,11 +96,14 @@ control the timer. All of them may be renamed or omitted by using the
 options object.
 
 * `startTimer(delay?)`: Starts the timer. Optionally accepts a delay.
-* `cancelTimer()`: Cancels the timer. The `onTimeout` callback is not
+* `stopTimer()`: Cancels the timer. The `onTimeout` callback is not
   invoked.
-* `resetTimer(delay?)`: Resets the timer to the beginning of its delay.
-  Optionally accepts a new delay. The `onTimeout` callback is not invoked.
+* `resetTimer(delay?)`: Starts the timer over from the beginning.
+  Optionally accepts a new delay. The `onTimeout` callback is not invoked
+  until the timer expires.
 * `finishTimer()`: Cancels the timer and invokes the `onTimeout` callback.
+* `pauseTimer()`: Pauses the timer. Call `resumeTimer()` to continue.
+* `resumeTimer()`: Resumes a paused timer.
 
 ### Complete example, using Mobx and Recompose:
 
@@ -137,16 +129,14 @@ const enhancer = compose(
     delay: 5000,
     onTimeout: ({setOpen}) => setOpen(false),
     options: {
-      finishPropName: 'onCloseButtonClick',
-      passedProps: ['finish'],
       startOnMount: true
     }
   })
 )
 
-const ModalPopup = ({onCloseButtonClick}) => (
+const ModalPopup = ({finishTimer}) => (
   <div id="popupWindow">
-    <button label="Close Window" onClick={onCloseButtonClick} />
+    <button label="Close Window" onClick={finishTimer} />
   </div>
 )
 

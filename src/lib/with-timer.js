@@ -1,52 +1,42 @@
 import invariant from 'invariant'
 import {
   defaults,
-  difference,
-  isArray,
   isBoolean,
-  isEmpty,
   isFunction,
   isNumber,
-  isString,
   isUndefined
 } from 'lodash'
 import * as React from 'react'
+import warning from 'warning'
 
-const CALLBACK_METHODS = Object.freeze([
-  'cancel',
+const OPERATIONS = Object.freeze([
   'finish',
+  'pause',
   'reset',
-  'start'
+  'resume',
+  'start',
+  'stop'
 ])
 
 const DEFAULT_OPTIONS = Object.freeze({
-  cancelPropName: 'cancelTimer',
-  finishPropName: 'finishTimer',
-  passedProps: CALLBACK_METHODS,
-  resetPropName: 'resetTimer',
-  startOnMount: false,
-  startPropName: 'startTimer'
+  startOnMount: false
 })
 
 const checkDelay = (delay, isRequired) =>
   invariant((!isRequired && isUndefined(delay)) || (isNumber(delay) && delay >= 0),
-    `withTimer() delay must be >= 0. Current value: ${delay}`)
+    `withTimer() delay must be a number >= 0. Current value: ${delay}`)
 
 const checkOnTimeout = (onTimeout, isRequired) =>
   invariant((!isRequired && isUndefined(onTimeout)) || isFunction(onTimeout),
     `withTimer() onTimeout must be a function. Current value: ${onTimeout}`)
 
-const checkPropName = (propName, displayName) =>
-  invariant(isEmpty(propName) || isString(propName),
-    `withTimer() ${displayName} option must be of type string. Current value: ${propName}`)
-
-const checkPassedProps = passedProps =>
-  invariant(isArray(passedProps) && isEmpty(difference(passedProps, CALLBACK_METHODS)),
-    `withTimer() passedProps option contains an invalid value. Valid values: ${CALLBACK_METHODS}. Current value: ${passedProps}`)
-
 const checkBooleanOption = (optionValue, optionName) =>
   invariant(isBoolean(optionValue),
     `withTimer() ${optionName} option is not a boolean. Current value: ${optionValue}`)
+
+const operationUnavailable = (op, state) => () => {
+  warning(`withTimer() operation ${op} is not available from state ${state}`)
+}
 
 export const withTimer = (config = {}) => {
   const {
@@ -55,15 +45,10 @@ export const withTimer = (config = {}) => {
     options: optionsArg = {}
   } = config
 
-  const options = defaults(optionsArg, DEFAULT_OPTIONS)
+  const options = Object.freeze(defaults({}, optionsArg, DEFAULT_OPTIONS))
 
   checkDelay(delayArg, false)
   checkOnTimeout(onTimeoutArg, false)
-  checkPropName(options.cancelPropName, 'cancelPropName')
-  checkPropName(options.finishPropName, 'finishPropName')
-  checkPropName(options.resetPropName, 'resetPropName')
-  checkPropName(options.startPropName, 'startPropName')
-  checkPassedProps(options.passedProps)
   checkBooleanOption(options.startOnMount, 'startOnMount')
 
   return BaseComponent => class WithTimer extends React.Component {
@@ -72,69 +57,100 @@ export const withTimer = (config = {}) => {
       onTimeout: React.PropTypes.func
     }
 
-    callbackProps = undefined
-    timeoutId = undefined
+    callbackProps = OPERATIONS.reduce(
+      (memo, op) => {
+        memo[`${op}Timer`] = (...args) => this.currentState[op](...args)
+        return memo
+      },
+      {}
+    )
+    currentState = undefined
 
     constructor ({delay, onTimeout}) {
       super()
       checkDelay(delay, false)
       checkOnTimeout(onTimeout, false)
-      this.callbackProps = this.getCallbackProps()
+      this.enterStoppedState()
     }
 
-    start = (delayOverride) => {
-      if (!this.timeoutId) {
-        const delay = delayOverride || this.props.delay || delayArg
-        const onTimeout = this.props.onTimeout || onTimeoutArg
+    stateTransition = newState => (this.currentState = newState)
 
-        checkDelay(delay, true)
-        checkOnTimeout(onTimeout, true)
-
-        this.timeoutId = setTimeout(this.timeout, delay)
-      }
+    enterStoppedState = timeoutId => {
+      clearTimeout(timeoutId)
+      this.stateTransition({
+        name: 'stopped',
+        finish: operationUnavailable('finish', 'stopped'),
+        pause: operationUnavailable('pause', 'stopped'),
+        reset: operationUnavailable('reset', 'stopped'),
+        resume: operationUnavailable('resume', 'stopped'),
+        start: this.enterStartedState,
+        stop: operationUnavailable('stop', 'stopped')
+      })
     }
 
-    cancel = () => {
-      clearTimeout(this.timeoutId)
-      this.timeoutId = undefined
-    }
-
-    reset = (delayOverride) => {
-      this.cancel()
-      this.start(delayOverride)
-    }
-
-    finish = () => {
-      this.cancel()
-      this.timeout()
-    }
-
-    timeout = () => {
-      this.timeoutId = undefined
+    enterStartedState = delayOverride => {
+      const delay = delayOverride || this.props.delay || delayArg
       const onTimeout = this.props.onTimeout || onTimeoutArg
-      onTimeout(this.props)
+
+      checkDelay(delay, true)
+      checkOnTimeout(onTimeout, true)
+
+      const startTime = Date.now()
+
+      const timeoutId = setTimeout(
+        () => {
+          this.enterStoppedState()
+          onTimeout(this.props)
+        },
+        delay
+      )
+
+      this.stateTransition({
+        name: 'started',
+        finish: () => {
+          this.enterStoppedState(timeoutId)
+          this.invokeOnTimeout()
+        },
+        pause: () => this.enterPausedState({startTime, delay, timeoutId}),
+        reset: delayOverride => {
+          this.enterStoppedState(timeoutId)
+          this.enterStartedState(delayOverride || delay)
+        },
+        resume: operationUnavailable('resume', 'started'),
+        start: operationUnavailable('start', 'started'),
+        stop: () => this.enterStoppedState(timeoutId)
+      })
     }
 
-    getCallbackProps = () =>
-      CALLBACK_METHODS.reduce(
-        (memo, cb) => {
-          const isPropPassed = options.passedProps.includes(cb)
-          if (isPropPassed) {
-            const propName = options[`${cb}PropName`]
-            memo[propName] = this[cb]
-          }
-          return memo
-        }, {}
-      )
+    enterPausedState = ({startTime, delay, timeoutId}) => {
+      clearTimeout(timeoutId)
+      const resumeDelay = delay - (Date.now() - startTime)
+      this.stateTransition({
+        name: 'paused',
+        finish: () => {
+          this.enterStoppedState()
+          this.invokeOnTimeout()
+        },
+        pause: operationUnavailable('pause', 'paused'),
+        reset: () => this.enterStartedState(delay),
+        resume: () => this.enterStartedState(resumeDelay),
+        start: operationUnavailable('start', 'paused'),
+        stop: this.enterStoppedState
+      })
+    }
+
+    invokeOnTimeout = () => (this.props.onTimeout || onTimeoutArg)(this.props)
 
     componentWillMount () {
       if (options.startOnMount) {
-        this.start()
+        this.currentState.start()
       }
     }
 
     componentWillUnmount () {
-      this.cancel()
+      if (this.currentState.name !== 'stopped') {
+        this.currentState.stop()
+      }
     }
 
     render () {
