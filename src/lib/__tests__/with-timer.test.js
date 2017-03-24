@@ -40,10 +40,10 @@ test('withTimer argument checks', t => {
 
 test('withTimer undefined delay arg, prop, and override', t => {
   const Wrapped = withTimer({
-    onTimeout: () => null,
+    onTimeout: () => null
   })(t.context.ComponentSpy)
 
-  mount(<Wrapped/>)
+  mount(<Wrapped />)
 
   t.throws(
     () => t.context.ComponentSpy.lastCall.args[0].startTimer(),
@@ -56,7 +56,7 @@ test('withTimer undefined onTimeout arg and prop', t => {
   const {ComponentSpy} = t.context
 
   const Wrapped = withTimer({
-    delay: 0,
+    delay: 0
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -73,7 +73,7 @@ test('withTimer startTimer works with args', t => {
 
   const Wrapped = withTimer({
     delay: 100,
-    onTimeout: timeoutSpy,
+    onTimeout: timeoutSpy
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -108,7 +108,7 @@ test('withTimer stopTimer works', t => {
 
   const Wrapped = withTimer({
     delay: 100,
-    onTimeout: timeoutSpy,
+    onTimeout: timeoutSpy
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -126,7 +126,7 @@ test('withTimer resetTimer works', t => {
 
   const Wrapped = withTimer({
     delay: 100,
-    onTimeout: timeoutSpy,
+    onTimeout: timeoutSpy
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -147,7 +147,7 @@ test('withTimer finishTimer works', t => {
 
   const Wrapped = withTimer({
     delay: 100,
-    onTimeout: timeoutSpy,
+    onTimeout: timeoutSpy
   })(ComponentSpy)
 
   mount(<Wrapped />)
@@ -168,7 +168,7 @@ test('withTimer unmounting component stops timer', t => {
 
   const Wrapped = withTimer({
     delay: 100,
-    onTimeout: timeoutSpy,
+    onTimeout: timeoutSpy
   })(ComponentSpy)
 
   const wrapper = mount(<Wrapped />)

@@ -2,22 +2,17 @@ const { resolve } = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack')
 
-const [ DEV, PROD ] = [ 'development', 'production' ].map(val => process.env.NODE_ENV === val)
+const PROD = process.env.NODE_ENV === 'production'
 
 module.exports = {
   context: __dirname,
   devtool: PROD ? 'nosources-source-map' : 'source-map',
   entry: './src/index.js',
   externals: {
-    'invariant': 'invariant',
-    'lodash': {
-      root: '_',
-      commonjs2: 'lodash',
-      commonjs: 'lodash',
-      amd: 'lodash'
-    },
-    'react': 'react',
-    'warning': 'warning'
+    invariant: 'invariant',
+    lodash: 'lodash',
+    react: 'react',
+    warning: 'warning'
   },
   module: {
     rules: [
@@ -37,15 +32,12 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
-    library: 'ReactWithTimer',
     libraryTarget: 'umd',
     path: resolve(__dirname, './dist')
   },
   plugins: [
-    new webpack.EnvironmentPlugin([ 'NODE_ENV' ]),
-    new webpack.DefinePlugin({
-      DEV: JSON.stringify(DEV),
-      PROD: JSON.stringify(PROD)
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development'
     }),
 
     ...(PROD ? [new UglifyJSPlugin({
